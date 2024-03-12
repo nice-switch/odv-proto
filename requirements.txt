@@ -1,4 +1,5 @@
 pycryptodome
 peewee
 fastapi
+uvicorn
 

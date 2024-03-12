@@ -1,1 +1,7 @@
-# I just wanna see how I'll manage doing everything at once!
+import odv
+
+
+
+odv.start(
+    odv.enum.DatabaseConnection.DEVELOPMENT
+)
