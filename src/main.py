@@ -10,14 +10,18 @@ odv.database.model.change_database_to(
     create_tables=True
 )
 
-print(odv.database.generic_peewee_get(
-    odv.database.model.Account,
-    odv.database.model.Account.username,
-    "test_username"
-))
+account: odv.database.wrapper.AccountWrapper
 
-#account = odv.database.create_account(
-#    "test_username",
-#    "test_password"
-#)
-#print(account.account_model.username)
+try:
+    account = odv.database.create_account(
+        "test_username",
+        "test_password",
+        "test@email.com"
+    )
+except Exception as _:
+    account = odv.database.get_account_by_username(
+        "test_username"
+    )
+
+print(account.authorize_with_password("test_password"))
+

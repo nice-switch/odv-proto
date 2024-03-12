@@ -1,5 +1,7 @@
+import json
+
 from odv import enum
-from odv.database import model, wrapper
+from odv.database import model, wrapper, secure
 
 
 def __generic_peewee_get(target_model: model.BaseModel, target_property: model.peewee.Field, target_value) -> model.BaseModel | None:
@@ -43,10 +45,31 @@ def create_account(username: str, password: str, email: str | None = None) -> wr
     assert get_account_by_username(username) is None, "An account with this username already exists!"
     assert email is None or get_account_by_email(email) is None, "An account with this email already exists!"
     
+    keys, salt = secure.hash_password(
+        password,
+        num_hashes=2
+    )
+
+    account_password: bytes = keys[0]
+    encryption_password: bytes = keys[1]
+
+    plain_data = json.dumps(enum.AccountDataTemplates.PLAIN)
+    secure_data = json.dumps(enum.AccountDataTemplates.SECURE).encode()
+
+    safe_secure_data, nonce = secure.aes_encrypt_data(encryption_password, secure_data)
+
     account_wrapper = wrapper.AccountWrapper(
         model.Account.create(
             username=username,
-            email=email or ""
+            email=email,
+
+            password=account_password.hex(),
+
+            plain=plain_data,
+            secure=safe_secure_data.hex(),
+
+            salt=salt.hex(),
+            nonce=nonce.hex()
         )
     )
 
