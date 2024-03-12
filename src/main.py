@@ -25,3 +25,12 @@ except Exception as _:
 
 print(account.get_secure_dictionary("test_password"))
 
+account.set_secure_dictionary(
+    password = "test_password",
+    data = {
+        "Hello": "world!"
+    }
+)
+
+print(account.get_secure_dictionary("test_password"))
+
