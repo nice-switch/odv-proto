@@ -30,7 +30,9 @@ class AccountWrapper():
         return True
 
         
-    def get_plain_dictionary(self) -> dict:
+    def get_plain_dictionary(self, password: str) -> dict:
+        assert self.authorize_with_password(password), "Wrong password!"
+
         return json.loads(self.account_model.plain)
 
 

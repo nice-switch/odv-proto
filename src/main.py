@@ -5,7 +5,7 @@ odv.database.model.change_database_to(
     create_tables=True
 )
 
-odv.database.get_account_by_username("test_username") or odv.database.create_account("test_username", "test_password", email="test@email.com")
+odv.database.get_account_by_username("test_username") or odv.database.create_account("test_username", "test_password", "test@email.com")
 
 if __name__ == "__main__":
     odv.start(

@@ -28,6 +28,15 @@ class AccountCreationErrorMessages():
 
 
 class AccountDataTemplates():
-    PLAIN = {}
-    SECURE = {}
-    PUBLIC = {}
+    PLAIN = {
+        "api_keys": {},
+
+    }
+
+    SECURE = {
+        
+    }
+
+    PUBLIC = {
+        "status": "To be updated..."
+    }
