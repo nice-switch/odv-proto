@@ -30,3 +30,4 @@ class AccountCreationErrorMessages():
 class AccountDataTemplates():
     PLAIN = {}
     SECURE = {}
+    PUBLIC = {}

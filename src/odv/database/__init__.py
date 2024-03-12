@@ -54,12 +54,15 @@ def create_account(username: str, password: str, email: str | None = None) -> wr
     encryption_password: bytes = keys[1]
 
     plain_data = json.dumps(enum.AccountDataTemplates.PLAIN)
+    public_data = json.dumps(enum.AccountDataTemplates.PUBLIC)
     secure_data = json.dumps(enum.AccountDataTemplates.SECURE).encode()
 
     safe_secure_data, nonce = secure.aes_encrypt_data(encryption_password, secure_data)
 
     account_wrapper = wrapper.AccountWrapper(
         model.Account.create(
+            public = public_data,
+
             username=username,
             email=email,
 

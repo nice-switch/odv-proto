@@ -16,6 +16,8 @@ class Account(BaseModel):
     password = peewee.TextField(unique=True, default="")
     email = peewee.TextField(default="")
 
+    public = peewee.TextField(default="")
+
     plain = peewee.TextField(default="")
     secure = peewee.TextField(default="")
     

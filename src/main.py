@@ -1,6 +1,18 @@
 import odv
 
+odv.database.model.change_database_to(
+    odv.enum.Database.DEVELOPMENT,
+    create_tables=True
+)
 
+odv.database.get_account_by_username("test_username") or odv.database.create_account("test_username", "test_password", email="test@email.com")
+
+if __name__ == "__main__":
+    odv.start(
+        odv.enum.Database.DEVELOPMENT,
+        "127.0.0.1",
+        8080
+    )
 
 
 """

@@ -18,6 +18,17 @@ class AccountWrapper():
 
         return hash == account_password
 
+
+    def get_public_dictionary(self) -> dict:
+        return json.loads(self.account_model.public)
+    
+
+    def set_public_dictionary(self, data: dict) -> bool:
+        self.account_model.public = json.dumps(data)
+        self.account_model.save()
+
+        return True
+
         
     def get_plain_dictionary(self) -> dict:
         return json.loads(self.account_model.plain)
