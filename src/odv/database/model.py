@@ -13,7 +13,7 @@ class BaseModel(peewee.Model):
 
 class Account(BaseModel):
     username = peewee.TextField(primary_key=True, index=True, unique=True)
-    password = peewee.TextField(default="")
+    password = peewee.TextField(unique=True, default="")
     email = peewee.TextField(default="")
     salt = peewee.TextField(default="")
 
