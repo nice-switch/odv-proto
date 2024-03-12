@@ -21,10 +21,10 @@ class Account(BaseModel):
     secure = peewee.TextField(default="")
 
 
-def change_database_to(database: enum.DatabaseConnection, create_tables: bool | None = False):
-    database_connection.initialize(database.value)
+def change_database_to(database: peewee.Database, create_tables: bool | None = False):
+    database_connection.initialize(database)
 
     if create_tables:
-        database.value.create_tables([
+        database.create_tables([
             Account
         ])
