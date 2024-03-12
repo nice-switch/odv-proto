@@ -1,10 +1,9 @@
 import odv
 
-# TODO
-"""
-    MAKE DATABASE STUFF! (ENCRYPTION LAST!)
-"""
 
+
+
+"""
 odv.database.model.change_database_to(
     database=odv.enum.Database.DEVELOPMENT,
     create_tables=True
@@ -33,4 +32,5 @@ account.set_secure_dictionary(
 )
 
 print(account.get_secure_dictionary("test_password"))
+"""
 
