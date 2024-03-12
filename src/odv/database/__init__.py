@@ -2,12 +2,12 @@ from odv import enum
 from odv.database import model, wrapper
 
 
-def generic_peewee_get(target_model: model.BaseModel, model_property, target_value) -> model.BaseModel | None:
+def __generic_peewee_get(target_model: model.BaseModel, target_property: model.peewee.Field, target_value) -> model.BaseModel | None:
     result_model: target_model | None = None
 
     try:
         result_model = target_model.get(
-            model_property == target_value
+            target_property == target_value
         )
     
     except model.peewee.DoesNotExist:
@@ -17,35 +17,23 @@ def generic_peewee_get(target_model: model.BaseModel, model_property, target_val
 
 
 def get_account_by_username(username: str) -> wrapper.AccountWrapper | None:
-    account_wrapper: wrapper.AccountWrapper | None = None
+    account_model = __generic_peewee_get(
+        target_model=model.Account,
+        target_property=model.Account.username,
+        target_value=username
+    )
 
-    try:
-        account_wrapper = wrapper.AccountWrapper(
-            model.Account.get(
-                model.Account.username == username
-            )
-        )
-    
-    except model.peewee.DoesNotExist:
-        pass
-
-    return account_wrapper
+    return account_model is not None and wrapper.AccountWrapper(account_model) or None
 
 
 def get_account_by_email(email: str) -> wrapper.AccountWrapper | None:
-    account_wrapper: wrapper.AccountWrapper | None = None
+    account_model = __generic_peewee_get(
+        target_model=model.Account,
+        target_property=model.Account.email,
+        target_value=email
+    )
 
-    try:
-        account_wrapper = wrapper.AccountWrapper(
-            model.Account.get(
-                model.Account.email == email
-            )
-        )
-    
-    except model.peewee.DoesNotExist:
-        pass
-
-    return account_wrapper
+    return account_model is not None and wrapper.AccountWrapper(account_model) or None
 
 
 def create_account(username: str, password: str, email: str | None = None) -> wrapper.AccountWrapper | None:
