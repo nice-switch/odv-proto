@@ -23,5 +23,5 @@ except Exception as _:
         "test_username"
     )
 
-print(account.authorize_with_password("test_password"))
+print(account.get_secure_dictionary("test_password"))
 
