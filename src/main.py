@@ -1,6 +1,6 @@
 import odv
 
-
+print(odv.config.PRODUCTION_DATABASE_CONNECTION)
 """
 import odv
 

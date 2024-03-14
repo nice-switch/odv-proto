@@ -1,0 +1,13 @@
+{
+    "selected_database": "sqlite",
+
+    "available_connections": {
+        "sqlite": {
+            "production": "workspace/production.sqlite",
+            "development": "workspace/development.sqlite",
+            "memory": ":memory:",
+
+            "peewee_database_class": "SqliteDatabase"
+        }
+    }
+}

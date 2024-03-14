@@ -1,0 +1,12 @@
+{
+    "creation_requirements": {
+        "username_maximum_length": 64,
+        "username_minimum_length": 6,
+        
+        "password_maximum_length": 64,
+        "password_minimum_length": 8,
+
+        "password_uppercase_required": true,
+        "password_symbol_required": true
+    }
+}
